@@ -7,7 +7,8 @@ def create(item):
 
 #read
 def read(index):
-    item = checklist[index]
+    item = checklist[int(index)]
+    print(item)
     return item
 
 #update 
@@ -36,28 +37,31 @@ def select(function_code):
         create(input_item)
     #read item
     elif function_code == "R":
-        item_index = user_input("Index Number?")
+        item_index = user_input("Index Number? -> ")
         read(item_index)
     #print all items
     elif function_code == "P":
         list_all_items()
+    #stops the loop
+    elif function_code == "Q":
+        return False
     #catch all
     else:
         print("Unknown Option")
+    return True
 
 def user_input(prompt):
     user_input = input(prompt)
     return user_input
 
 #test function
-def test():
-    select("C")
-    list_all_items()
-    select("R")
-    list_all_items()
-
-    user_value = user_input("Please Enter a value: ")
-    print(user_value)
+# def test():
+#     print(user_value)
    
+# test()
 
-test()
+running = True
+while running:
+    selection = user_input(
+        "Press C to add to list, R to Read from list and P to display list and Q to quit -> ")
+    running = select(selection)
