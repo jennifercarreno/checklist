@@ -1,13 +1,5 @@
 
 checklist = list()
-# checklist.append('Blue')
-# print(checklist)
-# checklist.append('Orange')
-# print(checklist)
-
-# checklist[1] = 'Cats'
-# checklist.pop(1)
-# print(checklist)
 
 #create
 def create(item):
@@ -26,17 +18,46 @@ def update(index, item):
 def destroy(index):
     checklist.pop(index)
 
+#list all items
+def list_all_items():
+    index = 0
+    for list_item in checklist:
+        print("{} {}".format(index, list_item))
+        index += 1
+
+#mark completed
+def mark_completed(index):
+    checklist[index].append("√")
+
+def select(function_code):
+    #create item
+    if function_code == "C":
+        input_item = user_input("Input Item: ")
+        create(input_item)
+    #read item
+    elif function_code == "R":
+        item_index = user_input("Index Number?")
+        read(item_index)
+    #print all items
+    elif function_code == "P":
+        list_all_items()
+    #catch all
+    else:
+        print("Unknown Option")
+
+def user_input(prompt):
+    user_input = input(prompt)
+    return user_input
+
+#test function
 def test():
-    create("purple sox")
-    create("red cloak")
+    select("C")
+    list_all_items()
+    select("R")
+    list_all_items()
 
-    print(read(0))
-    print(read(1))
-
-    update(0, "purple socks")
-    destroy(1)
-
-    print(read(0))
-   # print(read(1))
+    user_value = user_input("Please Enter a value: ")
+    print(user_value)
+   
 
 test()
